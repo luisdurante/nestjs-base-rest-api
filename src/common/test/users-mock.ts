@@ -65,4 +65,12 @@ export class UsersMock {
   getUsersLength(): number {
     return this.users.length;
   }
+
+  getValidContext(): any {
+    return { user: { email: this.users[0].email, id: this.users[0].id } };
+  }
+
+  getInvalidContext(): any {
+    return { user: { email: this.invalidEmail, id: this.invalidId } };
+  }
 }
