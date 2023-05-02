@@ -24,6 +24,7 @@ export class UsersController {
   }
 
   @Get()
+  @HttpCode(HttpStatus.OK)
   findAll(): Promise<User[]> {
     return this.usersService.findAll();
   }
@@ -37,6 +38,7 @@ export class UsersController {
   }
 
   @Patch(':id')
+  @HttpCode(HttpStatus.OK)
   update(
     @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
     @Body() updateUserDto: UpdateUserDto,
@@ -45,6 +47,7 @@ export class UsersController {
   }
 
   @Delete(':id')
+  @HttpCode(HttpStatus.OK)
   remove(
     @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
   ): Promise<User> {
