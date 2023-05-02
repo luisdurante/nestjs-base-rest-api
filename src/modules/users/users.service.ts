@@ -32,12 +32,24 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  findOneById(id: string): Promise<User> {
-    return this.usersRepository.findOne({ where: { id } });
+  async findOneById(id: string): Promise<User> {
+    const user = await this.usersRepository.findOne({ where: { id } });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
   }
 
-  findOneByEmail(email: string): Promise<User> {
-    return this.usersRepository.findOne({ where: { email } });
+  async findOneByEmail(email: string): Promise<User> {
+    const user = await this.usersRepository.findOne({ where: { email } });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
   }
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
